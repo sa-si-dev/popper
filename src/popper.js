@@ -290,7 +290,11 @@ export class Popper {
   }
   /** set methods - end */
 
-  show(resetPosition) {
+  /**
+   * @prop {boolean} [resetPosition] - Recalculate position before show
+   * @prop {object} [data] - Any custom data which would be passed to afterShow callback function call
+   */
+  show({ resetPosition, data } = {}) {
     clearTimeout(this.exitDelayTimeout);
     clearTimeout(this.hideDurationTimeout);
 
@@ -315,13 +319,16 @@ export class Popper {
 
       this.showDurationTimeout = setTimeout(() => {
         if (typeof this.afterShowCallback === 'function') {
-          this.afterShowCallback(this);
+          this.afterShowCallback(data);
         }
       }, showDuration);
     }, this.enterDelay);
   }
 
-  hide() {
+  /**
+   * @prop {object} [data] - Any custom data which would be passed to afterHide callback function call
+   */
+  hide({ data } = {}) {
     clearTimeout(this.enterDelayTimeout);
     clearTimeout(this.showDurationTimeout);
 
@@ -340,7 +347,7 @@ export class Popper {
           DomUtils.hide(this.$popperEle);
 
           if (typeof this.afterHideCallback === 'function') {
-            this.afterHideCallback(this);
+            this.afterHideCallback(data);
           }
         }, hideDuration);
       }

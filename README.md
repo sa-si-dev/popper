@@ -40,3 +40,24 @@ const samplePopper = new PopperComponent({
 | zIndex | Number | 1 | CSS z-index value for popper |
 | afterShow | Function | | Callback function to trigger after show |
 | afterHide | Function | | Callback function to trigger after hide |
+
+## Methods
+
+### show()
+
+```js
+/**
+ * @prop {boolean} [resetPosition] - Recalculate position before show
+ * @prop {object} [data] - Any custom data which would be passed to afterShow callback function call
+ */
+samplePopper.show({});
+```
+
+### hide()
+
+```js
+/**
+ * @prop {object} [data] - Any custom data which would be passed to afterHide callback function call
+ */
+samplePopper.hide({});
+```
