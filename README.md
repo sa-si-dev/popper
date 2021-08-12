@@ -61,3 +61,11 @@ samplePopper.show({});
  */
 samplePopper.hide({});
 ```
+
+### updatePosition()
+
+To recalculate the position of the popper element. Which colud be used when scrolling the parent element.
+
+```js
+samplePopper.updatePosition();
+```

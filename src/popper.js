@@ -353,6 +353,18 @@ export class Popper {
       }
     }, this.exitDelay);
   }
+
+  updatePosition() {
+    DomUtils.setStyle(this.$popperEle, 'transitionDuration', '0ms');
+
+    this.resetPosition();
+
+    let left = DomUtils.getData(this.$popperEle, 'left');
+    let top = DomUtils.getData(this.$popperEle, 'top');
+
+    DomUtils.show(this.$popperEle, 'inline-flex');
+    DomUtils.setStyle(this.$popperEle, 'transform', `translate3d(${left}px, ${top}px, 0)`);
+  }
 }
 
 window.PopperComponent = Popper;
