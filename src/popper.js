@@ -179,11 +179,11 @@ export class Popper {
     }
 
     /* if popperEle is hiding in left edge */
-    if (left < leftEdge) {
+    if (left + popperEleLeft < leftEdge) {
       if (position === 'left') {
         inversePosition = 'right';
       } else {
-        left = leftEdge;
+        left = leftEdge - popperEleLeft;
       }
     } else if (left + popperEleWidth > rightEdge) {
       /* if popperEle is hiding in right edge */
@@ -195,11 +195,11 @@ export class Popper {
     }
 
     /* if popperEle is hiding in top edge */
-    if (top < topEdge) {
+    if (top + popperEleTop < topEdge) {
       if (position === 'top') {
         inversePosition = 'bottom';
       } else {
-        top = topEdge;
+        top = topEdge - popperEleTop;
       }
     } else if (top + popperEleHeight > bottomEdge) {
       /* if popperEle is hiding in bottom edge */
