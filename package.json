@@ -1,6 +1,6 @@
 {
   "name": "popper-plugin",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A javascript plugin for popper which could be used to positioning tooltip or popover",
   "scripts": {
     "start": "webpack --mode development --watch",

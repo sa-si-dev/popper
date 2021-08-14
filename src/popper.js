@@ -101,18 +101,22 @@ export class Popper {
     let viewportHeight = window.innerHeight;
     let popperEleCoords = DomUtils.getAbsoluteCoords(this.$popperEle);
     let triggerEleCoords = DomUtils.getAbsoluteCoords(this.$triggerEle);
-    let popperEleLeft = popperEleCoords.left;
+    let popperEleWidth = popperEleCoords.width;
+    let popperEleHeight = popperEleCoords.height;
     let popperEleTop = popperEleCoords.top;
-    let triggerEleLeft = triggerEleCoords.left;
+    let popperEleRight = popperEleCoords.right;
+    let popperEleBotttom = popperEleCoords.bottom;
+    let popperEleLeft = popperEleCoords.left;
+    let triggerEleWidth = triggerEleCoords.width;
+    let triggerEleHeight = triggerEleCoords.height;
     let triggerEleTop = triggerEleCoords.top;
+    let triggerEleRight = triggerEleCoords.right;
+    let triggerEleBottom = triggerEleCoords.bottom;
+    let triggerEleLeft = triggerEleCoords.left;
     let topDiff = triggerEleTop - popperEleTop;
     let leftDiff = triggerEleLeft - popperEleLeft;
     let left = leftDiff;
     let top = topDiff;
-    let popperEleWidth = popperEleCoords.width;
-    let popperEleHeight = popperEleCoords.height;
-    let triggerEleWidth = triggerEleCoords.width;
-    let triggerEleHeight = triggerEleCoords.height;
     let position = this.position;
     let secondaryPosition = this.secondaryPosition;
     let widthCenter = triggerEleWidth / 2 - popperEleWidth / 2;
@@ -121,10 +125,9 @@ export class Popper {
     let transitionDistance = this.transitionDistance;
     let fromTop;
     let fromLeft;
-    let hideableParentOffset = DomUtils.getHideableParentOffset(this.$popperEle);
-    let topEdge = hideableParentOffset.y - popperEleTop;
+    let topEdge = window.scrollY - popperEleTop;
     let bottomEdge = viewportHeight + topEdge;
-    let leftEdge = hideableParentOffset.x - popperEleLeft;
+    let leftEdge = window.scrollX - popperEleLeft;
     let rightEdge = viewportWidth + leftEdge;
     let inversePosition;
     let viewportOffset = this.offset;
@@ -178,33 +181,45 @@ export class Popper {
       }
     }
 
-    /* if popperEle is hiding in left edge */
-    if (left + popperEleLeft < leftEdge) {
+    /* if popperEle is hiding on left edge */
+    if (left < leftEdge) {
       if (position === 'left') {
         inversePosition = 'right';
+      } else if (leftEdge + popperEleLeft > triggerEleRight) {
+        /** if triggerEle is hiding on left edge */
+        left = triggerEleRight - popperEleLeft;
       } else {
-        left = leftEdge - popperEleLeft;
+        left = leftEdge;
       }
     } else if (left + popperEleWidth > rightEdge) {
-      /* if popperEle is hiding in right edge */
+      /* if popperEle is hiding on right edge */
       if (position === 'right') {
         inversePosition = 'left';
+      } else if (rightEdge + popperEleLeft < triggerEleLeft) {
+        /** if triggerEle is hiding on right edge */
+        left = triggerEleLeft - popperEleRight;
       } else {
         left = rightEdge - popperEleWidth;
       }
     }
 
-    /* if popperEle is hiding in top edge */
-    if (top + popperEleTop < topEdge) {
+    /* if popperEle is hiding on top edge */
+    if (top < topEdge) {
       if (position === 'top') {
         inversePosition = 'bottom';
+      } else if (topEdge + popperEleTop > triggerEleBottom) {
+        /** if triggerEle is hiding on top edge */
+        top = triggerEleBottom - popperEleTop;
       } else {
-        top = topEdge - popperEleTop;
+        top = topEdge;
       }
     } else if (top + popperEleHeight > bottomEdge) {
-      /* if popperEle is hiding in bottom edge */
+      /* if popperEle is hiding on bottom edge */
       if (position === 'bottom') {
         inversePosition = 'top';
+      } else if (bottomEdge + popperEleTop < triggerEleTop) {
+        /** if triggerEle is hiding on bottom edge */
+        top = triggerEleTop - popperEleBotttom;
       } else {
         top = bottomEdge - popperEleHeight;
       }

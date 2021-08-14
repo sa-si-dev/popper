@@ -123,20 +123,6 @@ export class DomUtils {
     DomUtils.setStyle($ele, 'display', 'none');
   }
 
-  static getHideableParentOffset($ele) {
-    let $hideableParent = DomUtils.getHideableParent($ele);
-    let x = window.scrollX;
-    let y = window.scrollY;
-
-    if ($hideableParent) {
-      let coords = DomUtils.getAbsoluteCoords($hideableParent);
-      x += coords.left;
-      y += coords.top;
-    }
-
-    return { x, y };
-  }
-
   /** getting parent element which could hide absolute positioned child */
   static getHideableParent($ele) {
     let $hideableParent;
