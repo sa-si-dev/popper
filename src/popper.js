@@ -250,6 +250,8 @@ export class Popper {
       fromTop = top - transitionDistance;
       fromLeft = left;
     }
+    fromTop = parseInt(fromTop);
+    fromLeft = parseInt(fromLeft);
 
     let transformText = `translate3d(${fromLeft}px, ${fromTop}px, 0)`;
 
@@ -293,7 +295,7 @@ export class Popper {
         }
       }
 
-      DomUtils.setStyle(this.$arrowEle, 'transform', `translate3d(${arrowLeft}px, ${arrowTop}px, 0) ${rotateText}`);
+      DomUtils.setStyle(this.$arrowEle, 'transform', `translate3d(${parseInt(arrowLeft)}px, ${parseInt(arrowTop)}px, 0) ${rotateText}`);
     }
 
     DomUtils.hide(this.$popperEle);
@@ -320,7 +322,7 @@ export class Popper {
     this.enterDelayTimeout = setTimeout(() => {
       let left = DomUtils.getData(this.$popperEle, 'left');
       let top = DomUtils.getData(this.$popperEle, 'top');
-      let transformText = `translate3d(${left}px, ${top}px, 0)`;
+      let transformText = `translate3d(${parseInt(left)}px, ${parseInt(top)}px, 0)`;
       let showDuration = this.showDuration;
 
       DomUtils.show(this.$popperEle, 'inline-flex');
@@ -349,8 +351,8 @@ export class Popper {
 
     this.exitDelayTimeout = setTimeout(() => {
       if (this.$popperEle) {
-        let left = DomUtils.getData(this.$popperEle, 'fromLeft');
-        let top = DomUtils.getData(this.$popperEle, 'fromTop');
+        let left = parseInt(DomUtils.getData(this.$popperEle, 'fromLeft'));
+        let top = parseInt(DomUtils.getData(this.$popperEle, 'fromTop'));
         let transformText = `translate3d(${left}px, ${top}px, 0)`;
         let hideDuration = this.hideDuration;
 
@@ -374,8 +376,8 @@ export class Popper {
 
     this.resetPosition();
 
-    let left = DomUtils.getData(this.$popperEle, 'left');
-    let top = DomUtils.getData(this.$popperEle, 'top');
+    let left = parseInt(DomUtils.getData(this.$popperEle, 'left'));
+    let top = parseInt(DomUtils.getData(this.$popperEle, 'top'));
 
     DomUtils.show(this.$popperEle, 'inline-flex');
     DomUtils.setStyle(this.$popperEle, 'transform', `translate3d(${left}px, ${top}px, 0)`);
