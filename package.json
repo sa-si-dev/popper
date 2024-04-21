@@ -6,7 +6,7 @@
     "start": "webpack --mode development --watch",
     "build": "webpack --mode production"
   },
-  "author": "Sa Si Dev",
+  "author": "Sa Si Dev & UI Components customizations",
   "keywords": [
     "javascript",
     "plugin",
