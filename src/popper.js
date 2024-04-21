@@ -250,10 +250,10 @@ export class Popper {
       fromTop = top - transitionDistance;
       fromLeft = left;
     }
-    fromTop = parseInt(fromTop);
-    fromLeft = parseInt(fromLeft);
+    fromTop = fromTop;
+    fromLeft = fromLeft;
 
-    let transformText = `translate3d(${fromLeft}px, ${fromTop}px, 0)`;
+    let transformText = `translate3d(${parseInt(fromLeft)}px, ${parseInt(fromTop)}px, 0)`;
 
     DomUtils.setStyle(this.$popperEle, 'transform', transformText);
     DomUtils.setData(this.$popperEle, 'fromLeft', fromLeft);
