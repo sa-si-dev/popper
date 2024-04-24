@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
 
-const banner = `Popper v1.0.4
+const banner = `Popper v1.0.5
 https://sa-si-dev.github.io/popper
 Licensed under MIT (https://github.com/sa-si-dev/popper/blob/master/LICENSE)`;
 
